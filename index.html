@@ -7,184 +7,275 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0f1116;
-  --card:#121418;
-  --muted:#9aa3b2;
-  --text:#e6eef6;
-  --accent:#0A66C2;
-  --accent-ghost: rgba(10,102,194,0.12);
-  --shadow: 0 8px 28px rgba(2,6,23,0.6);
-  --radius:12px;
+  --bg:#0f1116; --card:#111216; --muted:#9aa3b2; --text:#e6eef6;
+  --accent:#0A66C2; --soft:#0f1724; --glass: rgba(255,255,255,0.02);
+  --radius:14px; --shadow: 0 10px 30px rgba(2,6,23,0.6);
 }
 [data-theme="light"]{
-  --bg:#f5f7fa;
-  --card:#ffffff;
-  --text:#0f1116;
-  --muted:#3f4a59;
-  --accent:#0A66C2;
-  --accent-ghost: rgba(10,102,194,0.15);
-  --shadow:0 8px 22px rgba(0,0,0,0.05);
+  --bg:#f6f8fb; --card:#ffffff; --muted:#51606a; --text:#0b1220; --soft:#ffffff;
+  --shadow: 0 8px 20px rgba(12,20,35,0.06);
 }
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter;background:var(--bg);color:var(--text);}
-.container{max-width:1100px;margin:36px auto;padding:28px;}
-header{display:flex;align-items:center;justify-content:space-between;}
-.controls{display:flex;gap:10px;}
-.btn{padding:8px 12px;border-radius:10px;background:var(--card);border:none;color:var(--text);cursor:pointer;font-weight:600;}
+html,body{height:100%;margin:0;font-family:Inter,system-ui, -apple-system, "Segoe UI", Roboto;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+.container{max-width:1100px;margin:40px auto;padding:28px;}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:12px;padding:8px 0;background:transparent;z-index:60}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;font-weight:800}
+.title h1{margin:0;font-size:16px}
+.title p{margin:0;font-size:13px;color:var(--muted)}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{padding:8px 12px;border-radius:10px;background:var(--card);border:none;color:var(--text);cursor:pointer;font-weight:600;box-shadow:var(--shadow);font-size:14px}
 .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04)}
-.cta-primary{background:var(--accent);color:white;}
-.avatar{height:220px;border-radius:10px;overflow:hidden;}
-.avatar img{width:100%;height:100%;object-fit:cover;border-radius:10px;border:2px solid var(--accent);}
-.card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:var(--shadow);}
-.lead{font-size:20px;font-weight:700;margin:0 0 8px;}
-.small{font-size:13px;color:var(--muted);}
+.btn.primary{background:var(--accent);color:white}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start}
+.card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.02)}
+.hero{display:flex;flex-direction:column;gap:12px}
+.lead{font-size:20px;font-weight:700;margin:0}
+.lead-sub{color:var(--muted);margin:0}
+.avatar{height:220px;border-radius:12px;overflow:hidden;border:3px solid rgba(10,102,194,0.12);background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.00))}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block;border-radius:10px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.badge{padding:6px 10px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);font-weight:700;color:var(--muted);font-size:13px}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.skill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-size:13px;color:var(--muted);font-weight:700}
 .section{margin-top:24px}
-h2{margin:0 0 12px;font-size:18px;}
+.h2{font-size:18px;margin:0 0 12px}
 .timeline{display:flex;flex-direction:column;gap:12px}
-.event{padding:12px;border-radius:10px;background:var(--card);}
-.time{color:var(--muted);font-size:13px;width:120px;}
-.event-body{font-size:14px;}
-.grid-responsive{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:900px){.grid-responsive{grid-template-columns:1fr}}
-.skills,.hero-meta{display:flex;flex-wrap:wrap;gap:8px}
-.skill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.05);font-size:13px;color:var(--muted);}
-.badge-accent{padding:6px 10px;border-radius:10px;background:var(--accent);color:white;font-size:13px;font-weight:700;}
-.project{padding:14px;border-radius:10px;background:var(--card);}
-.contact-cards{display:flex;flex-wrap:wrap;gap:12px}
-.contact-card{flex:1;min-width:220px;background:var(--card);padding:14px;border-radius:10px;}
-.footer{margin-top:32px;padding:18px;border-top:1px solid rgba(255,255,255,0.10);display:flex;justify-content:space-between}
+.event{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
+.time{min-width:100px;color:var(--muted);font-weight:700}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.contact-cards{display:flex;gap:12px;flex-wrap:wrap}
+.footer{margin-top:32px;padding-top:18px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+.socials{display:flex;gap:8px;align-items:center}
+.icon{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);font-weight:700;color:var(--muted)}
+.qr{width:120px;height:120px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+.fade-up{opacity:0;transform:translateY(12px);transition:opacity 520ms ease,transform 520ms ease}
+.fade-up.in{opacity:1;transform:none}
+@media(max-width:980px){.grid{grid-template-columns:1fr}.avatar{height:160px}.controls{flex-wrap:wrap}}
+.small{font-size:13px;color:var(--muted)}
+a{color:inherit;text-decoration:none}
+:focus{outline:2px solid rgba(10,102,194,0.16);outline-offset:3px}
 </style>
 </head>
 <body>
 <div class="container">
-
 <header>
   <div class="brand">
-    <h1>ENG. Mustafa Fool</h1>
+    <div class="logo">MF</div>
+    <div class="title">
+      <h1>ENG. Mustafa Fool</h1>
+      <p class="small">Electrical Power Engineer — LV/MV Distribution • MEP</p>
+    </div>
   </div>
-  <div class="controls">
-    <button class="btn cta-primary" id="downloadHtml">Download</button>
+  <div class="controls" role="navigation">
+    <button class="btn primary" id="downloadHtml">Download</button>
     <button class="btn ghost" id="themeToggle">Theme</button>
+    <button class="btn ghost" id="langToggle">العربية</button>
     <button class="btn ghost" id="contactBtn">Contact</button>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="hero" style="display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start;margin-top:20px;">
-  <div class="card">
-    <p class="lead">Ambitious Electrical Engineer — LV/MV Distribution & MEP Design Specialist</p>
-    <p class="small">Site execution, tender preparation, ELV & BMS systems, panel building workflows, and technical coordination.</p>
-    <div class="hero-meta" style="margin-top:14px">
-      <span class="badge-accent">B.Sc. Electrical Power — Zagazig University</span>
-      <span class="skill">Site Engineer</span>
-      <span class="skill">Technical Office</span>
-      <span class="skill">Military Service: Air Defense</span>
+<main class="grid" aria-live="polite">
+  <section>
+    <div class="card hero fade-up" data-anim>
+      <p class="lead" id="leadText">Ambitious Electrical Engineer — LV/MV Distribution & MEP Design Specialist</p>
+      <p class="lead-sub" id="leadSub">Site execution, tender preparation, ELV & BMS systems, panel building workflows, and technical coordination.</p>
+      <div class="meta" aria-hidden="true">
+        <span class="badge">B.Sc. Electrical Power — Zagazig University (2024)</span>
+        <span class="badge">Available for Contracts</span>
+      </div>
+      <div class="skills" aria-hidden="true">
+        <span class="skill">AutoCAD</span><span class="skill">Revit</span><span class="skill">ETAP</span><span class="skill">MATLAB</span>
+      </div>
     </div>
-  </div>
+
+    <div class="section fade-up" data-anim>
+      <h3 class="h2" id="aboutTitle">About</h3>
+      <div class="card">
+        <p class="small" id="aboutText">Electrical Power Engineer focused on LV/MV distribution, MEP design, smart systems, panel building and technical office documentation. Leadership experience as technical training leader for large cohorts.</p>
+      </div>
+    </div>
+
+    <div class="section fade-up" data-anim>
+      <h3 class="h2" id="expTitle">Experience</h3>
+      <div class="timeline">
+        <div class="event card">
+          <div class="time">Jan–Mar 2025</div>
+          <div class="event-body">
+            <strong id="exp1Title">Electrical Site Engineer — Dar Al-Kahrabaa</strong>
+            <div class="small" id="exp1Desc">Execution, RFIs, coordination, QS support.</div>
+          </div>
+        </div>
+        <div class="event card">
+          <div class="time">Jan–Oct 2024</div>
+          <div class="event-body">
+            <strong id="exp2Title">Leader — Dar Al-Kahrabaa Training Center</strong>
+            <div class="small" id="exp2Desc">Led technical track, prepared workshops.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section fade-up" data-anim>
+      <h3 class="h2" id="projTitle">Projects</h3>
+      <div class="projects">
+        <div class="project card"><strong>Administrative LV & ELV Design</strong><div class="small">Full LV & ELV design for administrative building.</div></div>
+        <div class="project card"><strong>EUI Academic Building — New Capital</strong><div class="small">Group electrical design project.</div></div>
+        <div class="project card"><strong>Revit Modeling</strong><div class="small">BIM and coordination.</div></div>
+        <div class="project card"><strong>Technical Office Supervision</strong><div class="small">Industrial & healthcare projects.</div></div>
+      </div>
+    </div>
+
+    <div class="section fade-up" data-anim>
+      <h3 class="h2" id="certTitle">Certificates</h3>
+      <div class="cert-grid">
+        <div class="card small"><strong>Electrical Distribution Diploma</strong><div>Dar Al-Kahrabaa — Jun 2023</div></div>
+        <div class="card small"><strong>BIM Diploma</strong><div>Niqat Global — Oct 2025</div></div>
+        <div class="card small"><strong>Automation Diploma</strong><div>HA Consulting — Aug 2022</div></div>
+      </div>
+    </div>
+
+    <div class="section fade-up" data-anim>
+      <h3 class="h2" id="contactTitle">Contact</h3>
+      <div class="card contact-cards">
+        <div class="contact-card"><strong>Phone</strong><div class="small">+20 100 394 1074</div></div>
+        <div class="contact-card"><strong>Email</strong><div class="small">mustafa.foooll@gmail.com</div></div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+        <div class="qr">
+          <img src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=https://mustafafool.github.io" alt="QR to portfolio" style="width:100%;height:100%;object-fit:cover">
+        </div>
+        <div class="small">Scan to open portfolio: <br><a href="https://mustafafool.github.io" target="_blank">https://mustafafool.github.io</a></div>
+      </div>
+    </div>
+
+  </section>
 
   <aside>
-    <div class="avatar"><img src="profile.jpg"></div>
-    <div class="card small" style="margin-top:12px;">
-      <p><strong>Location:</strong> Obour, Cairo</p>
-      <p><strong>Phone:</strong> +20 100 394 1074</p>
-      <p><strong>Email:</strong> mustafa.foooll@gmail.com</p>
-      <p><strong>DOB:</strong> 02 Feb 2002</p>
+    <div class="avatar card fade-up" data-anim>
+      <img src="profile.jpg" alt="Profile photo of Mustafa Fool">
     </div>
+
+    <div class="card fade-up" data-anim style="margin-top:12px">
+      <h4 class="h2" id="skillsTitle">Core Skills</h4>
+      <div class="skills" style="margin-top:8px">
+        <span class="skill">AutoCAD</span><span class="skill">Revit</span><span class="skill">ETAP</span><span class="skill">Dialux Evo</span>
+      </div>
+    </div>
+
+    <div class="card fade-up" data-anim style="margin-top:12px">
+      <h4 class="h2">Social</h4>
+      <div class="socials" style="margin-top:8px">
+        <a class="icon" href="https://twitter.com/Mustafafooll" target="_blank" title="Twitter">T</a>
+        <a class="icon" href="https://www.facebook.com/profile.php?id=100006679334296" target="_blank" title="Facebook">f</a>
+        <a class="icon" href="https://www.instagram.com/mustafa.fool/" target="_blank" title="Instagram">I</a>
+        <a class="icon" href="https://www.linkedin.com/in/mustafa-fool-ab6611242" target="_blank" title="LinkedIn">in</a>
+        <a class="icon" href="https://wa.me/201003941074" target="_blank" title="WhatsApp">W</a>
+      </div>
+    </div>
+
+    <div class="card fade-up" data-anim style="margin-top:12px">
+      <h4 class="h2">Download</h4>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn primary" id="downloadFull">Download HTML</button>
+        <a class="btn" href="profile.jpg" download>Download Photo</a>
+      </div>
+    </div>
+
   </aside>
-</section>
-
-<!-- ABOUT -->
-<section class="section">
-<h2>About</h2>
-<div class="card">
-<p class="small">Electrical Power Engineer focused on LV/MV distribution, MEP design, smart systems, panel building and technical office documentation.</p>
-</div>
-</section>
-
-<!-- EXPERIENCE -->
-<section class="section">
-<h2>Experience</h2>
-<div class="timeline">
-<div class="event card">
-  <div class="time">Jan–Mar 2025</div>
-  <div class="event-body">
-    <strong>Electrical Site Engineer — Dar Al-Kahrabaa</strong>
-    <div class="small">Execution, RFIs, coordination, QS support.</div>
-  </div>
-</div>
-<div class="event card">
-  <div class="time">Jan–Oct 2024</div>
-  <div class="event-body">
-    <strong>Leader — Dar Al-Kahrabaa Training Center</strong>
-    <div class="small">Led technical track, prepared workshops.</div>
-  </div>
-</div>
-</div>
-</section>
-
-<!-- PROJECTS -->
-<section class="section">
-<h2>Projects</h2>
-<div class="grid-responsive">
-<div class="project"><strong>Administrative LV & ELV Design</strong></div>
-<div class="project"><strong>EUI Academic Building — New Capital</strong></div>
-<div class="project"><strong>Revit Modeling</strong></div>
-<div class="project"><strong>Technical Office Supervision</strong></div>
-</div>
-</section>
-
-<!-- EDUCATION -->
-<section class="section">
-<h2>Education & Courses</h2>
-<div class="card small">
-<strong>B.Sc. Electrical Power — Zagazig University (Excellent)</strong>
-<ul>
-<li>BIM Diploma — Niqat</li>
-<li>Electrical Distribution Diploma</li>
-<li>Revit Electrical Design</li>
-<li>Automation Diploma</li>
-</ul>
-</div>
-</section>
-
-<!-- CONTACT -->
-<section class="section" id="contact">
-<h2>Contact</h2>
-<div class="contact-cards">
-<div class="contact-card"><strong>Phone</strong><div class="small">+20 100 394 1074</div></div>
-<div class="contact-card"><strong>Email</strong><div class="small">mustafa.foooll@gmail.com</div></div>
-</div>
-</section>
+</main>
 
 <footer class="footer">
-<div class="small">© 2025 ENG. Mustafa Fool</div>
-<div class="small">Theme Ready</div>
+  <div class="small">© 2025 ENG. Mustafa Fool</div>
+  <div class="small" id="themeLabel">Theme: Dark</div>
 </footer>
-
 </div>
 
 <script>
-const toggle=document.getElementById('themeToggle');
-const saved=localStorage.getItem('theme')||'dark';
-document.documentElement.setAttribute('data-theme',saved);
-toggle.textContent=saved==='dark'?'Light Mode':'Dark Mode';
-toggle.addEventListener('click',()=>{
- const c=document.documentElement.getAttribute('data-theme');
- const n=c==='dark'?'light':'dark';
- document.documentElement.setAttribute('data-theme',n);
- localStorage.setItem('theme',n);
- toggle.textContent=n==='dark'?'Light Mode':'Dark Mode';
+// THEME
+const themeToggle = document.getElementById('themeToggle');
+const themeLabel = document.getElementById('themeLabel');
+const THEME_KEY = 'mf_theme_pro';
+let theme = localStorage.getItem(THEME_KEY) || 'dark';
+document.documentElement.setAttribute('data-theme', theme);
+themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+themeLabel.textContent = 'Theme: ' + (theme === 'dark' ? 'Dark' : 'Light');
+themeToggle.addEventListener('click', ()=>{
+  theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(THEME_KEY, theme);
+  themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+  themeLabel.textContent = 'Theme: ' + (theme === 'dark' ? 'Dark' : 'Light');
 });
-document.getElementById('downloadHtml').addEventListener('click',()=>{
- const blob=new Blob([document.documentElement.outerHTML],{type:'text/html'});
- const url=URL.createObjectURL(blob);
- const a=document.createElement('a');
- a.href=url;a.download='portfolio.html';
- document.body.appendChild(a);a.click();a.remove();
- URL.revokeObjectURL(url);
-});
-document.getElementById('contactBtn').addEventListener('click',()=>location.href='#contact');
-</script>
 
+// LANGUAGE
+const langToggle = document.getElementById('langToggle');
+let lang = localStorage.getItem('mf_lang') || 'en';
+const text = {
+  en: {
+    lead: "Ambitious Electrical Engineer — LV/MV Distribution & MEP Design Specialist",
+    leadSub: "Site execution, tender preparation, ELV & BMS systems, panel building workflows, and technical coordination.",
+    aboutTitle: "About",
+    aboutText: "Electrical Power Engineer focused on LV/MV distribution, MEP design, smart systems, panel building and technical office documentation. Leadership experience as technical training leader for large cohorts.",
+    expTitle: "Experience",
+    projTitle: "Projects",
+    certTitle: "Certificates",
+    contactTitle: "Contact",
+    skillsTitle: "Core Skills"
+  },
+  ar: {
+    lead: "مهندس كهرباء طموح — توزيع LV/MV ومتخصص في تصميم MEP",
+    leadSub: "تنفيذ مواقع، إعداد مناقصات، أنظمة ELV وBMS، ورقيات اللوحات وتنسيق فني.",
+    aboutTitle: "نبذة",
+    aboutText: "مهندس قوى كهربائية متخصص في توزيع LV/MV، تصميم MEP، الأنظمة الذكية، ورسم وتنفيذ اللوحات الكهربائية. خبرة في التدريب الفني وإعداد المحتوى.",
+    expTitle: "الخبرات",
+    projTitle: "المشروعات",
+    certTitle: "الشهادات",
+    contactTitle: "اتصل",
+    skillsTitle: "المهارات"
+  }
+};
+function applyLang(l){
+  const t = text[l];
+  document.getElementById('leadText').textContent = t.lead;
+  document.getElementById('leadSub').textContent = t.leadSub;
+  document.getElementById('aboutTitle').textContent = t.aboutTitle;
+  document.getElementById('aboutText').textContent = t.aboutText;
+  document.getElementById('expTitle').textContent = t.expTitle;
+  document.getElementById('projTitle').textContent = t.projTitle;
+  document.getElementById('certTitle').textContent = t.certTitle;
+  document.getElementById('contactTitle').textContent = t.contactTitle;
+  document.getElementById('skillsTitle').textContent = t.skillsTitle;
+  document.documentElement.lang = l === 'ar' ? 'ar' : 'en';
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  langToggle.textContent = l === 'ar' ? 'English' : 'العربية';
+  localStorage.setItem('mf_lang', l);
+}
+applyLang(lang);
+langToggle.addEventListener('click', ()=>{ lang = lang === 'en' ? 'ar' : 'en'; applyLang(lang); });
+
+// INTERSECTION ANIM
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in');});
+},{threshold:0.12});
+document.querySelectorAll('[data-anim]').forEach(el=>observer.observe(el));
+
+// DOWNLOAD
+document.getElementById('downloadHtml').addEventListener('click', ()=>{
+  const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = 'MustafaFool_Portfolio.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+});
+document.getElementById('downloadFull').addEventListener('click', ()=>{
+  const blob = new Blob([document.documentElement.outerHTML],{type:'text/html'});
+  const url = URL.createObjectURL(blob); const a = document.createElement('a');
+  a.href = url; a.download = 'MustafaFool_Portfolio_FULL.html'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+});
+
+// CONTACT BUTTON
+document.getElementById('contactBtn').addEventListener('click', ()=> location.href='#contact');
+</script>
 </body>
 </html>
