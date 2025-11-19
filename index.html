@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ENG. Mustafa Fool — Portfolio (Ultra Spicy)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#06070a; --card:#0f1218; --muted:#a6b0bb; --text:#e6eef6;
+  --accent:#00d4ff; --accent-2:#6ee7b7; --accent-3:#7c4dff;
+  --glass: rgba(255,255,255,0.03);
+  --radius:12px; --shadow: 0 12px 40px rgba(3,8,20,0.6);
+  --glass-border: rgba(255,255,255,0.04);
+  --max-width:1100px;
+}
+[data-theme="light"]{
+  --bg:linear-gradient(180deg,#f6f8fb,#eef3fb);
+  --card:#ffffff; --muted:#51606a; --text:#0b1220;
+  --shadow: 0 10px 30px rgba(12,20,35,0.06);
+  --glass-border: rgba(9,20,35,0.06);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+body{position:relative;overflow-x:hidden;padding-bottom:60px}
+
+/* background */
+.bg-wrap{position:fixed;inset:0;z-index:-3;pointer-events:none;background:
+  radial-gradient(900px 500px at 10% 20%, rgba(124,77,255,0.06), transparent 10%),
+  radial-gradient(700px 400px at 86% 80%, rgba(0,212,255,0.05), transparent 10%),
+  linear-gradient(180deg, rgba(5,6,12,0.9), rgba(8,10,16,0.95));
+}
+.gradient-anim{position:absolute;inset:-20%;filter:blur(52px);opacity:0.95;background:
+  conic-gradient(from 120deg at 50% 50%, rgba(0,212,255,0.08), rgba(124,77,255,0.06), rgba(110,231,183,0.06), rgba(0,212,255,0.08));
+  animation: spin 28s linear infinite;mix-blend-mode: screen;z-index:-2}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* neon stroke */
+.neon-stroke{position:relative;}
+.neon-stroke:after{
+  content:"";position:absolute;inset:-2px;border-radius:14px;pointer-events:none;
+  box-shadow: 0 6px 30px rgba(124,77,255,0.06), 0 0 80px rgba(0,212,255,0.02) inset;
+  opacity:0.9;
+}
+
+/* particles */
+.particles{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:0.22}
+
+/* layout */
+.container{max-width:var(--max-width);margin:36px auto;padding:20px;position:relative;z-index:2}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:12px;padding:8px 0;background:transparent;z-index:60;backdrop-filter: blur(6px)}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--text);font-size:18px;box-shadow:0 4px 18px rgba(0,212,255,0.08)}
+.title h1{margin:0;font-size:16px}
+.title p{margin:0;font-size:13px;color:var(--muted)}
+.controls{display:flex;gap:8px;align-items:center}
+.btn{padding:8px 12px;border-radius:10px;background:var(--card);border:none;color:var(--text);cursor:pointer;font-weight:700;box-shadow:var(--shadow);font-size:14px;transition:transform .18s ease, box-shadow .18s ease}
+.btn.ghost{background:transparent;border:1px solid var(--glass-border)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:rgba(4,4,10,0.98);box-shadow:0 10px 40px rgba(0,212,255,0.08)}
+.btn.primary.pulse{animation:pulse 2.8s infinite ease-in-out}
+@keyframes pulse {0%{transform:scale(1)}50%{transform:scale(1.02)}100%{transform:scale(1)}}
+
+/* grid layout */
+.grid{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));padding:18px;border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--glass-border);backdrop-filter: blur(10px);transition:transform .22s ease}
+.hero .lead{font-size:20px;font-weight:800;margin:0;letter-spacing:0.2px}
+.lead-sub{color:var(--muted);margin-top:8px}
+.badge{padding:6px 10px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);font-weight:800;color:var(--muted);font-size:13px}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.skill{padding:6px 10px;border-radius:999px;border:1px solid rgba(255,255,255,0.03);font-size:13px;color:var(--muted);font-weight:700}
+
+/* headings */
+.h2{font-size:18px;margin:0 0 12px;position:relative}
+.h2:after{content:"";height:3px;width:56px;border-radius:6px;display:block;margin-top:8px;background:linear-gradient(90deg,var(--accent-2),var(--accent-3));box-shadow:0 6px 24px rgba(124,77,255,0.06)}
+
+/* timeline & achievements */
+.timeline{display:flex;flex-direction:column;gap:10px}
+.event{display:flex;gap:12px;align-items:flex-start;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.02)}
+.event a{display:block;color:inherit;text-decoration:none}
+.time{min-width:100px;color:var(--muted);font-weight:700}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.project .card{padding:12px;transition:transform .28s ease, box-shadow .28s ease}
+.project .project-img{width:100%;height:120px;object-fit:cover;border-radius:8px;margin-bottom:10px;display:block}
+.project strong{display:block;margin-bottom:6px}
+
+/* certificates (small thumb style like GC3) */
+.cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cert-thumb{display:flex;gap:10px;align-items:center;background:transparent;padding:10px;border-radius:10px}
+.cert-thumb img{width:84px;height:60px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.cert-thumb .meta{font-size:13px;color:var(--muted)}
+
+/* gallery before contact: 4 columns responsive */
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.gallery-item{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);display:flex;flex-direction:column;align-items:center;gap:8px}
+.gallery-item img{width:100%;height:150px;object-fit:cover;border-radius:8px;display:block}
+.gallery-item strong{display:block;font-size:14px;text-align:center}
+
+/* aside blocks */
+.avatar{height:180px;border-radius:12px;overflow:hidden;border:3px solid rgba(10,102,194,0.06);background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.00))}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.icon{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);font-weight:700;color:var(--muted);box-shadow:0 6px 24px rgba(0,0,0,0.6);margin-right:6px}
+
+/* job-series */
+.job-series{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
+.job-series .card{padding:8px}
+.job-series .card img{height:110px;object-fit:cover;border-radius:8px;width:100%;display:block}
+
+/* responsive */
+@media(max-width:1000px){.grid{grid-template-columns:1fr}.projects{grid-template-columns:repeat(2,1fr)}.cert-grid{grid-template-columns:repeat(3,1fr)}.avatar{height:140px}.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.projects{grid-template-columns:1fr}.cert-grid{grid-template-columns:repeat(2,1fr)}.gallery-grid{grid-template-columns:1fr}}
+
+/* focus visible */
+.show-focus :focus{outline:3px solid rgba(0,212,255,0.12);outline-offset:3px;border-radius:8px}
+
+/* tilt smoothing */
+[data-tilt]{will-change:transform;transform-style:preserve-3d;transition:transform .18s cubic-bezier(.2,.9,.2,1), box-shadow .18s cubic-bezier(.2,.9,.2,1)}
+[data-tilt] img{transition:transform .18s cubic-bezier(.2,.9,.2,1)}
+
+/* animations */
+.fade-in-up{opacity:0;transform:translateY(8px);animation:fadeInUp .6s forwards;animation-delay:0.06s}
+@keyframes fadeInUp{to{opacity:1;transform:none}}
+
+.small{font-size:13px;color:var(--muted)}
+a{color:inherit;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="bg-wrap" aria-hidden="true">
+  <div class="gradient-anim" aria-hidden="true"></div>
+</div>
+<canvas id="particlesCanvas" class="particles" aria-hidden="true"></canvas>
+
+<div class="container fade-in-up">
+  <header>
+    <div class="brand">
+      <div class="logo" aria-hidden="true">MF</div>
+      <div class="title">
+        <h1>ENG. Mustafa Fool</h1>
+        <p class="small">Electrical Power Engineer — LV/MV Distribution • MEP</p>
+      </div>
+    </div>
+    <div class="controls" role="navigation" aria-label="Main controls">
+      <!-- Download HTML button removed as requested -->
+      <button class="btn ghost" id="themeToggle" title="Toggle theme">Light Mode</button>
+      <button class="btn ghost" id="langToggle" title="العربية">العربية</button>
+      <button class="btn ghost" id="contactBtn" title="Contact section">Contact</button>
+    </div>
+  </header>
+
+  <main class="grid" aria-live="polite">
+    <section>
+      <div class="card hero" id="heroCard">
+        <p class="lead" id="leadText">Ambitious Electrical Engineer — LV/MV Distribution &amp; MEP Design Specialist</p>
+        <p class="lead-sub" id="leadSub">Site execution, tender preparation, ELV &amp; BMS systems, panel building workflows, and technical coordination.</p>
+        <div class="meta" aria-hidden="true">
+          <span class="badge">B.Sc. Electrical Power — Zagazig University (2024)</span>
+          <span class="badge">Available for Contracts</span>
+        </div>
+        <div class="skills" aria-hidden="true">
+          <span class="skill">AutoCAD</span><span class="skill">Revit</span><span class="skill">ETAP</span><span class="skill">Dialux Evo</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3 class="h2" id="aboutTitle">About</h3>
+        <div class="card">
+          <p class="small" id="aboutText">Electrical Power Engineer specialized in LV/MV distribution, MEP design, smart systems, technical office work, panel building documentation, and field supervision. Experienced in leading technical teams, delivering training programs, organizing workshops, and conducting technical research.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3 class="h2" id="expTitle">Experience</h3>
+        <div class="timeline">
+          <div class="event card" role="article">
+            <div class="time">Jan–Mar 2025</div>
+            <div class="event-body">
+              <strong id="exp1Title">Electrical Site Engineer — Dar Al-Kahrabaa</strong>
+              <div class="small" id="exp1Desc">Execution, RFIs, coordination, QS support.</div>
+            </div>
+          </div>
+
+          <div class="event card" role="article">
+            <div class="time">Jan–Oct 2024</div>
+            <div class="event-body">
+              <strong id="exp2Title">Leader — Dar Al-Kahrabaa Training Center</strong>
+              <div class="small" id="exp2Desc">Led technical track, prepared workshops, supervised tasks and delivered lecture series.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div class="section">
+        <h3 class="h2" id="projTitle">Projects</h3>
+        <div class="projects" id="projectsGrid">
+          <!-- Individual Project -->
+          <div class="project">
+            <div class="card" data-tilt data-tilt-max="10">
+              <img class="project-img" src="images/individual_project.jpg" alt="Individual Project" onerror="this.style.display='none'">
+              <strong><a href="https://drive.google.com/drive/folders/1wtTpNeulN1x7ZmvqIynoK9tTRT1RS3ZD?usp=sharing" target="_blank" rel="noopener">Individual Project</a></strong>
+              <div class="small">Administrative LV &amp; ELV System Design — Full drawings, panel schedules, selectivity.</div>
+            </div>
+          </div>
+
+          <!-- Group Project -->
+          <div class="project">
+            <div class="card" data-tilt data-tilt-max="10">
+              <img class="project-img" src="images/59ffffcc-999b-4f68-a3a1-b64ea0c8a07a.jpg" alt="Group Project" onerror="this.style.display='none'">
+              <strong><a href="https://drive.google.com/drive/folders/1GrUfmhDJWvns5zEBc-1cLANcCNsro6jl?usp=sharing" target="_blank" rel="noopener">Group Project</a></strong>
+              <div class="small">EUI Academic Building — New Capital — Electrical Design &amp; Modeling.</div>
+            </div>
+          </div>
+
+          <!-- Field Visits -->
+          <div class="project">
+            <div class="card" data-tilt data-tilt-max="10">
+              <img class="project-img" src="images/f887e10a-547f-41ef-89e9-e49bd54a4394.jpg" alt="Field Visits" onerror="this.style.display='none'">
+              <strong><a href="#" target="_blank" rel="noopener">Field Visits</a></strong>
+              <div class="small">8+ technical field visits across electrical factories &amp; stations.</div>
+            </div>
+          </div>
+
+          <!-- Top50 -->
+          <div class="project">
+            <div class="card" data-tilt data-tilt-max="10">
+              <img class="project-img" src="images/ce00ad80-df26-4be9-8046-800cd88fe3ff.jpg" alt="Top50" onerror="this.style.display='none'">
+              <strong><a href="https://www.facebook.com/share/p/1BaNPQn4w5/" target="_blank" rel="noopener">Top 50 Competition</a></strong>
+              <div class="small">Ranked among top 50 participants in technical challenge.</div>
+            </div>
+          </div>
+
+          <!-- BIM -->
+          <div class="project">
+            <div class="card" data-tilt data-tilt-max="10">
+              <img class="project-img" src="images/6f776d13-4f4f-4630-82c0-c22cc47b3c4f.jpeg" alt="BIM Coordination" onerror="this.style.display='none'">
+              <strong><a href="#" rel="noopener">Industrial BIM Coordination</a></strong>
+              <div class="small">BIM and coordination for MEP integration and clash resolution.</div>
+            </div>
+          </div>
+
+          <!-- Panel Building -->
+          <div class="project">
+            <div class="card" data-tilt data-tilt-max="10">
+              <img class="project-img" src="images/c1f533c1-5219-4794-97f5-be5f978eca8c.jpg" alt="Panel Building Workflow" onerror="this.style.display='none'">
+              <strong><a href="#" rel="noopener">Panel Building Workflow</a></strong>
+              <div class="small">Panel scheduling, BOM, and factory coordination.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="section">
+        <h3 class="h2" id="certTitle">Certificates &amp; Courses</h3>
+        <div class="cert-grid">
+          <div class="card cert-thumb">
+            <img src="images/certificate-bsc.jpg" alt="BSc certificate" onerror="this.style.display='none'">
+            <div class="meta">
+              <strong>B.Sc. Power &amp; Machines</strong>
+              <div class="small">Zagazig University</div>
+            </div>
+          </div>
+
+          <div class="card cert-thumb">
+            <img src="images/plc_cert.jpg" alt="PLC certificate" onerror="this.style.display='none'">
+            <div class="meta">
+              <strong>PLC Basic Programming</strong>
+              <div class="small">HA Consulting</div>
+            </div>
+          </div>
+
+          <div class="card cert-thumb">
+            <img src="images/bim_cert.jpg" alt="BIM / Practical" onerror="this.style.display='none'">
+            <div class="meta">
+              <strong>Practical BIM / Field</strong>
+              <div class="small">Field &amp; workshop sessions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievements & Job Market -->
+      <div class="section">
+        <h3 class="h2">Achievements &amp; Activities</h3>
+
+        <div class="timeline">
+          <a class="event card" href="https://www.facebook.com/story.php?story_fbid=812873110868937&id=100064387673648&rdid=S3CMjZSeVI8TMwb" target="_blank" rel="noopener noreferrer">
+            <div class="event-body"><strong>12+ Technical Sessions</strong><div class="small">Delivered workshops and technical training sessions.</div></div>
+          </a>
+
+          <a class="event card" href="https://www.facebook.com/share/p/1DpJh2ezZj/" target="_blank" rel="noopener noreferrer">
+            <div class="event-body"><strong>Active Technical Team Leader</strong><div class="small">Led a team, tracked tasks, provided technical support.</div></div>
+          </a>
+
+          <a class="event card" href="https://www.facebook.com/share/v/1ALb83TQzx/" target="_blank" rel="noopener noreferrer">
+            <div class="event-body"><strong>Job Market Series</strong><div class="small">Delivered employability sessions and guided students through hiring steps.</div></div>
+          </a>
+        </div>
+
+        <div class="job-series">
+          <div class="card">
+            <img src="images/ce00ad80-df26-4be9-8046-800cd88fe3ff.jpg" alt="Top 50 - Job Market">
+            <strong class="small">Top 50 Competition</strong>
+            <div class="small">Technical challenge — rank & participation</div>
+          </div>
+
+          <div class="card">
+            <img src="images/6f776d13-4f4f-4630-82c0-c22cc47b3c4f.jpeg" alt="BIM - Job Market">
+            <strong class="small">BIM Session</strong>
+            <div class="small">BIM workflow & coordination presentation</div>
+          </div>
+
+          <div class="card">
+            <img src="images/f887e10a-547f-41ef-89e9-e49bd54a4394.jpg" alt="Field Visit - Job Market">
+            <strong class="small">Field Visits</strong>
+            <div class="small">Industrial site visits & practical exposure</div>
+          </div>
+
+          <div class="card">
+            <img src="images/c1f533c1-5219-4794-97f5-be5f978eca8c.jpg" alt="Panel - Job Market">
+            <strong class="small">Panel Building</strong>
+            <div class="small">Panel assembly & testing training</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Gallery (now includes all 12 images) inserted BEFORE Contact -->
+      <div class="section" id="gallerySection">
+        <h3 class="h2">Highlights &amp; Achievements</h3>
+        <div class="card">
+          <div class="gallery-grid" aria-hidden="false">
+            <!-- row 1 -->
+            <div class="gallery-item">
+              <img src="images/9c053e7e-5552-44ad-86e6-e754af8d246a.jpeg" alt="Team Gathering" onerror="this.style.display='none'">
+              <strong>Team Workshop — Field Visit</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/ac41ae32-5fde-4fa3-8f85-425db420485f.jpg" alt="Profile Feature" onerror="this.style.display='none'">
+              <strong>Profile Feature — Distribution Track Lead</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/11cc89fb-7fca-49c3-a7f5-de3ef9fdd490.jpg" alt="Tech 101 Session" onerror="this.style.display='none'">
+              <strong>Tech 101 — Guest Speaker</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/34e22888-240d-4a5e-8dad-4ec1e5ab592f.jpeg" alt="Award Moment" onerror="this.style.display='none'">
+              <strong>Recognition — Engineers Syndicate</strong>
+            </div>
+
+            <!-- row 2 -->
+            <div class="gallery-item">
+              <img src="images/d329d86e-246c-4c51-b566-be61f6bd55fb.jpeg" alt="Honoring Moment" onerror="this.style.display='none'">
+              <strong>Honoring — Event Moment</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/f99d85a3-c903-4de3-ab97-61fd266c0bb7.jpeg" alt="Graduation" onerror="this.style.display='none'">
+              <strong>Graduation Day — B.Sc. Ceremony</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/ed6ad961-a1da-4ea7-8609-2e2e4f5c5754.jpg" alt="Workshop Audience" onerror="this.style.display='none'">
+              <strong>Distribution Workshop — Large Audience</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/8a522912-abc6-4fe8-91da-a198e28870a2.jpg" alt="Conference Visit" onerror="this.style.display='none'">
+              <strong>Conference Visit — Egypt Energy</strong>
+            </div>
+
+            <!-- row 3 (the 4 newly added images) -->
+            <div class="gallery-item">
+              <img src="images/WhatsApp Image 2025-11-18 at 3.04.31 PM.jpeg" alt="Workshop Snapshot" onerror="this.style.display='none'">
+              <strong>Workshop Snapshot — Hands-on Session</strong>
+            </div>
+            <div class="gallery-item">
+  <img src="images/dd275c4f-7b6d-4c01-a8d7-a1203b930e85.jpeg" alt="Graduation Project Photo" onerror="this.style.display='none'">
+  <strong>Graduation Project Photo</strong>
+</div>
+            <div class="gallery-item">
+              <img src="images/6eb83d52-d7b8-40c5-9142-6620153b320f.jpeg" alt="Team Photo" onerror="this.style.display='none'">
+              <strong>Team Photo — Project Delivery</strong>
+            </div>
+            <div class="gallery-item">
+              <img src="images/ac8d1075-7b73-406f-a8c3-a5b574c0cc1c.jpg" alt="Conference Stage" onerror="this.style.display='none'">
+              <strong>Conference Stage — Speaker Moment</strong>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3 class="h2" id="contactTitle">Contact</h3>
+        <div class="card contact-cards">
+          <div class="contact-card"><strong>Phone</strong><div class="small"><a href="https://wa.me/201003941074" target="_blank" rel="noopener">+20 100 394 1074</a></div></div>
+          <div class="contact-card"><strong>Email</strong><div class="small"><a href="mailto:mustafa.foooll@gmail.com">mustafa.foooll@gmail.com</a></div></div>
+          <div class="contact-card"><strong>Telegram</strong><div class="small"><a href="http://t.me/Mustafafool" target="_blank" rel="noopener">@Mustafafool</a></div></div>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="avatar card neon-stroke">
+        <img src="images/profile.jpg" alt="Profile photo of Mustafa Fool" onerror="this.style.display='none'">
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 class="h2" id="skillsTitle">Core Skills</h4>
+        <div class="skills" style="margin-top:8px">
+          <span class="skill">AutoCAD</span><span class="skill">Revit</span><span class="skill">ETAP</span><span class="skill">Dialux Evo</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 class="h2">Social</h4>
+        <div style="margin-top:8px">
+          <a class="icon" href="https://twitter.com/Mustafafooll" target="_blank" rel="noopener" title="Twitter">T</a>
+          <a class="icon" href="https://www.facebook.com/profile.php?id=100006679334296" target="_blank" rel="noopener" title="Facebook">f</a>
+          <a class="icon" href="https://www.instagram.com/mustafa.fool/" target="_blank" rel="noopener" title="Instagram">I</a>
+          <a class="icon" href="https://www.linkedin.com/in/mustafa-fool-ab6611242" target="_blank" rel="noopener" title="LinkedIn">in</a>
+          <a class="icon" href="https://wa.me/201003941074" target="_blank" rel="noopener" title="WhatsApp">W</a>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 class="h2">Download</h4>
+        <div style="display:flex;gap:8px;margin-top:8px">
+          <!-- Download HTML removed; CV primary button added (no link) -->
+          <button class="btn primary" id="cvBtn">CV</button>
+          <a class="btn" download href="images/profile.jpg">Download Photo</a>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer style="margin-top:28px;display:flex;justify-content:space-between;align-items:center" class="small">
+    <div>© 2025 ENG. Mustafa Fool</div>
+    <div id="themeLabel">Theme: Dark</div>
+  </footer>
+</div>
+
+<script>
+/* THEME + LANGUAGE */
+const THEME_KEY = 'mf_theme_pro';
+let theme = localStorage.getItem(THEME_KEY) || 'dark';
+document.documentElement.setAttribute('data-theme', theme);
+const themeToggle = document.getElementById('themeToggle');
+const themeLabel = document.getElementById('themeLabel');
+if(themeToggle) themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+if(themeLabel) themeLabel.textContent = 'Theme: ' + (theme === 'dark' ? 'Dark' : 'Light');
+if(themeToggle) themeToggle.addEventListener('click', ()=>{
+  theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem(THEME_KEY, theme);
+  themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
+  themeLabel.textContent = 'Theme: ' + (theme === 'dark' ? 'Dark' : 'Light');
+});
+
+/* LANGUAGE */
+const langToggle = document.getElementById('langToggle');
+let lang = localStorage.getItem('mf_lang') || 'en';
+const text = {
+  en: {
+    lead: "Ambitious Electrical Engineer — LV/MV Distribution & MEP Design Specialist",
+    leadSub: "Site execution, tender preparation, ELV & BMS systems, panel building workflows, and technical coordination.",
+    aboutTitle: "About",
+    aboutText: "Electrical Power Engineer specialized in LV/MV distribution, MEP design, smart systems, technical office work, panel building documentation, and field supervision. Experienced in leading technical teams, delivering training programs, organizing workshops, and conducting technical research.",
+    expTitle: "Experience",
+    projTitle: "Projects",
+    certTitle: "Certificates",
+    contactTitle: "Contact",
+    skillsTitle: "Core Skills"
+  },
+  ar: {
+    lead: "مهندس كهرباء طموح — توزيع LV/MV ومتخصص في تصميم MEP",
+    leadSub: "تنفيذ مواقع، إعداد مناقصات، أنظمة ELV وBMS، ورقيات اللوحات وتنسيق فني.",
+    aboutTitle: "نبذة",
+    aboutText: "مهندس قوى كهربائية متخصص في توزيع LV/MV، تصميم MEP، الأنظمة الذكية، ورسم وتنفيذ اللوحات الكهربائية. خبرة في التدريب الفني وإعداد المحتوى.",
+    expTitle: "الخبرات",
+    projTitle: "المشروعات",
+    certTitle: "الشهادات",
+    contactTitle: "اتصل",
+    skillsTitle: "المهارات"
+  }
+};
+function applyLang(l){
+  const t = text[l] || text.en;
+  const leadEl = document.getElementById('leadText');
+  const leadSubEl = document.getElementById('leadSub');
+  if(leadEl) leadEl.textContent = t.lead;
+  if(leadSubEl) leadSubEl.textContent = t.leadSub;
+  document.getElementById('aboutTitle').textContent = t.aboutTitle;
+  document.getElementById('aboutText').textContent = t.aboutText;
+  document.getElementById('expTitle').textContent = t.expTitle;
+  document.getElementById('projTitle').textContent = t.projTitle;
+  document.getElementById('certTitle').textContent = t.certTitle;
+  document.getElementById('contactTitle').textContent = t.contactTitle;
+  document.getElementById('skillsTitle').textContent = t.skillsTitle;
+  document.documentElement.lang = l === 'ar' ? 'ar' : 'en';
+  document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+  if(langToggle) langToggle.textContent = l === 'ar' ? 'English' : 'العربية';
+  localStorage.setItem('mf_lang', l);
+}
+applyLang(lang);
+if(langToggle) langToggle.addEventListener('click', ()=>{ lang = lang === 'en' ? 'ar' : 'en'; applyLang(lang); });
+
+/* Contact button navigation */
+document.getElementById('contactBtn').addEventListener('click', ()=> location.href='#contactTitle');
+
+/* Particles */
+(function(){
+  const canvas = document.getElementById('particlesCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w = canvas.width = innerWidth;
+  let h = canvas.height = innerHeight;
+  const particles = [];
+  const count = Math.max(20, Math.floor((w*h)/110000));
+  for(let i=0;i<count;i++) particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+0.3,vx:(Math.random()-0.5)*0.2,vy:(Math.random()-0.5)*0.2});
+  function draw(){ ctx.clearRect(0,0,w,h); particles.forEach(p=>{ p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=w; if(p.x>w)p.x=0; if(p.y<0)p.y=h; if(p.y>h)p.y=0; ctx.beginPath(); ctx.fillStyle='rgba(124,77,255,0.05)'; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); }); }
+  function loop(){ draw(); requestAnimationFrame(loop); }
+  loop();
+  addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
+})();
+
+/* tilt effect */
+(function(){
+  const cards = document.querySelectorAll('[data-tilt]');
+  cards.forEach(card=>{
+    const max = parseFloat(card.getAttribute('data-tilt-max')) || 12;
+    let rect = card.getBoundingClientRect();
+    const img = card.querySelector('.project-img');
+    function updateRect(){ rect = card.getBoundingClientRect(); }
+    window.addEventListener('resize', updateRect);
+    let pointerActive = false;
+    card.addEventListener('pointermove', e=>{
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      pointerActive = true;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = (x - rect.width/2) / (rect.width/2);
+      const cy = (y - rect.height/2) / (rect.height/2);
+      const tiltX = (cy * max) * -1;
+      const tiltY = (cx * max);
+      card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateZ(6px)`;
+      card.style.boxShadow = `0 30px 60px rgba(2,6,30,0.6), 0 0 40px rgba(0,212,255,0.03)`;
+      if(img){
+        img.style.transform = `translate3d(${cx*8}px, ${cy*6}px, 0) scale(1.02)`;
+        img.style.transition='transform .12s linear';
+      }
+    });
+    function resetCard(){
+      card.style.transform = '';
+      card.style.boxShadow = '';
+      if(img){ img.style.transform = ''; img.style.transition='transform .18s ease'; }
+      pointerActive = false;
+    }
+    card.addEventListener('pointerleave', resetCard);
+    let idleTimer;
+    card.addEventListener('pointermove', ()=>{
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(()=>{ if(pointerActive) resetCard(); }, 1600);
+    });
+  });
+})();
+
+/* accessibility */
+document.addEventListener('keydown', (e)=>{ if(e.key==='Tab') document.documentElement.classList.add('show-focus'); });
+</script>
+</body>
+</html>
